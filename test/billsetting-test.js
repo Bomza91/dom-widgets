@@ -119,19 +119,7 @@ describe("use values", function () {
     assert.equal(0.00, settingsBill.getTotalCallCost());
     assert.equal(1.70, settingsBill.getTotalSmsCost());
 
-  });
-  settingsBill.setCallCost(1.35)
-  settingsBill.getSmsCost(0.85)
-
-  settingsBill.sendSms();
-  settingsBill.makeCall();
-  settingsBill.sendSms();
-
-
-  assert.equal(3.05, settingsBill.getTotalCost());
-  assert.equal(1.35, settingsBill.getTotalCallCost());
-  assert.equal(1.70, settingsBill.getTotalSmsCost());
-
+});
 });
 
 describe("warning & critical level", function () {
