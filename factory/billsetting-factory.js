@@ -61,7 +61,7 @@ function BillWithSettings() {
     }
 
     function hasReachedCriticalLevel() {
-        return getTotalCost() >= getCriticalLeve();
+        return getTotalCost() >= getCriticalLevel();
     }
 
     function totalClassName() {
