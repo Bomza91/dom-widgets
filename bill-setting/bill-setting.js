@@ -11,7 +11,8 @@ const callCostElem = document.querySelector(".callTotalSettings");
 const smsCostSetting = document.querySelector(".smsTotalSettings");
 
 const totalCostElemThree = document.querySelector(".totalSettings");
-
+//instance
+var billSettingsInstance = BillWithSettings();
 var smsCostVal = 0;
 var callCostVal = 0;
 var warnLevel = 0;
