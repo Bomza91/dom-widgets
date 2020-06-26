@@ -10,8 +10,8 @@ describe("The bill with settings factory function", function () {
     settingsBill2.setCallCost(2.75);
     assert.equal(2.75, settingsBill2.getCallCost());
   });
-  it("It should be able to set the sms cost", function () {
-    let settingsBill = BillWithSettings();
+it("It should be able to set the sms cost", function () {
+  let settingsBill = BillWithSettings();
 
     settingsBill.setSmsCost(0.85);
     assert.equal(0.85, settingsBill.getSmsCost());
