@@ -22,28 +22,13 @@ function radioBill() {
         return theSmsCost;
     }
 
-    function getTotalCost() {
-        return callCostTotal + smsCostTotal;
-    }
-
-    function getTotalCost() {
-        return callCostTotal + smsCostTotal;
-    }
-    function getTotalCallCost() {
-        return callCostTotal;
-    }
-    function getTotalSmsCost() {
-        return smsCostTotal;
-    }
 
     return {
         setCallCost,
         getCallCost,
         setSmsCost,
         getSmsCost,
-        getTotalCost,
-        getTotalCallCost,
-        getTotalSmsCost,
+       
     }
 
 }

@@ -1,62 +1,74 @@
-const calculateBtn = document.querySelector(".calculateBtn");
+const addButton = document.querySelector(".add");
+const updateButton = document.querySelector(".updateSettings");
 
-const billTotalElement = document.querySelector(".billTotal");
+const billItem = document.querySelector(".billItemTypeWithSettings");
+const smsCost = document.querySelector(".smsCostSetting");
+const callCost = document.querySelector(".callCostSetting");
+const criticalLevel = document.querySelector(".criticalLevelSetting");
+const warningLevel = document.querySelector(".warningLevelSetting");
 
-const billStringField = document.querySelector(".billString");
+const callCostElem = document.querySelector(".callTotalSettings");
+const smsCostSetting = document.querySelector(".smsTotalSettings");
 
-const billTotalSpanElement = document.querySelector(".total");
+const totalCostElemThree = document.querySelector(".totalSettings");
 
-function totalPhoneBill(billString) {
+var smsCostVal = 0;
+var callCostVal = 0;
+var warnLevel = 0;
+var critLevel = 0;
 
-var billItems = billString.split(",");
+var smsCostTotal = 0;
+var callCostTotal = 0;
+var allCostTotal = 0;
 
-var billTotal = 0;
+  function ButtonClicked(){
+  var checkedRadioBtn = document.querySelector("input[name='billItemTypeWithSettings']:checked");
+  if(allCostTotal < critLevel){
 
-for (var i=0;i<billItems.length;i++){
-var billItem = billItems[i].trim();
+    if (checkedRadioBtn){
+  var itemChecked = checkedRadioBtn.value;
 
-if (billItem === "call"){
-billTotal += 2.75;
+    if(itemChecked === "call"){
+      callCostTotal += callCostVal;
+    }
+    else if (itemChecked === "sms"){
+      smsCostTotal += smsCostVal;
+
+    }
+    }
+    callCostElem.innerHTML = callCostTotal.toFixed(2);
+  smsCostSetting.innerHTML = smsCostTotal.toFixed(2);
+      allCostTotal = callCostTotal + smsCostTotal
+  totalCostElemThree.innerHTML = allCostTotal.toFixed(2);
+
+      styleTotal()
+  }
 }
 
-else if (billItem === "sms"){ 
-billTotal += 0.75;
-}
+function updated(){
+  callCostVal = Number(callCost.value);
+  smsCostVal = Number(smsCost.value);
+  warnLevel = Number(warningLevel.value);
+  critLevel = Number(criticalLevel.value);
 
-}
+  styleTotal()
+} 
 
-var roundedBillTotal = billTotal.toFixed(2);
-return roundedBillTotal;
-}
+function styleTotal(){
 
-function styleTotalColor(roundedBillTotal) {
+  totalCostElemThree.classList.remove("danger");
+  totalCostElemThree.classList.remove("warning");
 
-const currentTotal = Number(roundedBillTotal);
-
-billTotalSpanElement.classList.remove("danger");
-billTotalSpanElement.classList.remove("warning");
-
-if (currentTotal >= 30) {
-billTotalSpanElement.classList.add("danger");
-}
-else if (currentTotal >= 20 && currentTotal < 30) {
-billTotalSpanElement.classList.add("warning");
-}
-}
-
-function calculateBtnClicked() {
-
-var billString = billStringField.value;
-
-const roundedBillTotal = totalPhoneBill(billString);
-
-
-
-billTotalElement.innerHTML = roundedBillTotal;
-
-styleTotalColor(roundedBillTotal);
-
+ if(allCostTotal >= warnLevel && allCostTotal <critLevel){
+   totalCostElemThree.classList.remove("danger");
+   totalCostElemThree.classList.add("warning");
+ }
+  else if(allCostTotal >= critLevel){
+    totalCostElemThree.classList.remove("warning");
+    totalCostElemThree.classList.add("danger");   
+  }
 }
 
 
-calculateBtn.addEventListener("click", calculateBtnClicked);
+addButton.addEventListener("click", ButtonClicked);
+updateButton.addEventListener("click", updated);

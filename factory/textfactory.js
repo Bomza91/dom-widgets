@@ -1,7 +1,9 @@
 function TextInputBill(billString) {
 
     var billTotal = 0;
+
     var billItems = billString.split(",");
+    
     for (var i = 0; i < billItems.length; i++) {
         var billItem = billItems[i].trim();
         if (billItem === "call") {
