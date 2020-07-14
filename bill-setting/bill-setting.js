@@ -85,3 +85,4 @@ addButton.addEventListener("click", addButtonClicked);
 
 
 updateSettings.addEventListener("click", updateSettingsClicked);
+© 2020 GitHub, Inc.

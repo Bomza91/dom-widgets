@@ -1,4 +1,4 @@
-const addButton = document.querySelector(".add");
+const addButton = document.querySelector(".addButton");
 const updateButton = document.querySelector(".updateSettings");
 
 const billItem = document.querySelector(".billItemTypeWithSettings");
@@ -70,5 +70,4 @@ function styleTotal(){
 }
 
 
-addButton.addEventListener("click", ButtonClicked);
-updateButton.addEventListener("click", updated);
+addButton.addEventListener("click", addButtonClicked);
