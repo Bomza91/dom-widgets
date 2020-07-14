@@ -1,88 +1,73 @@
-const callTotalRadio = document.querySelector(".callTotalRadio");
+const btnAdd=document.querySelector(".add");
+const btnUpd=document.querySelector(".updateSettings")
+const color=document.querySelector(".bread");
+const smsCost=document.querySelector(".smsCostSetting");
+const callCost=document.querySelector(".callCostSetting");
+const criticalLevel=document.querySelector(".criticalLevelSetting");
+const warningLevel=document.querySelector(".warningLevelSetting");
+const totalCostElem=document.querySelector(".totalSettings");
+  const callCostElem=document.querySelector(".callTotalSettings");
+const smsCostElem=document.querySelector(".smsTotalSettings");
 
-const smsTotalRadio = document.querySelector(".smsTotalRadio");
+var smsCostVal=0;
+var callCostVal=0;
+var warnLevel=0;
+var critLevel=0;
 
-const billItemTypeWithSettings = document.querySelector(".billItemTypeWithSettings");
-
-const callCostSettings = document.querySelector(".callCostSettings");
-
-const smsCostSettings = document.querySelector(".smsCostSettings");
-
-const warningLevelText = document.querySelector(".warningLevelText");
-
-const criticalLevelText = document.querySelector(".criticalLevelText");
-
-const btnAdd = document.querySelector(".addButton");
-
-const btnUpdateSettings = document.querySelector(".updateSettings");
-
-const totalSettings = document.querySelector(".totalSettings");
-
-const totalSettingsSpan = document.querySelector(".orangeTwo"); 
-
-var callCost = 0;
-var smsCost = 0;
-var warningLevel = 0;
-var criticalLevel = 0;
-
-var callTotal = 0;
-var smsTotal = 0;
-var totalCost = 0;
-function addButtonClicked() {
-    var checkedRadioBtn = document.querySelector("input[name='billItemTypeWithSettings']:checked");
+var smsCostTotal=0;
+var callCostTotal=0;
+var allCostTotal=0;
+ 
+function tCostOfBill(billItemType) {
+  if(allCostTotal < critLevel){
+            if (billItemType === "call") {
+        callCostTotal += callCostVal;
+              allCostTotal += callCostVal;
+            }
+            else if (billItemType === "sms") {
+        smsCostTotal += smsCostVal;
+                
+              allCostTotal += smsCostVal;
+            }
+        }
+}
+function styleTotal(roundedBillTotal){ 
+      const currTotal=Number(roundedBillTotal);
+    color.classList.remove("danger");
+    color.classList.remove("warning");
+ if(currTotal>=warnLevel && currTotal<critLevel)
+    {//make orange
+color.classList.add("warning");
+    }
     
+else if(currTotal>=critLevel){
+        //make red
+        color.classList.add("danger")
+    } 
+    
+}
+function clicked(){
 
-        if (checkedRadioBtn) {
-            var billItemChecked = checkedRadioBtn.value;
+ var radioSmsCall = document.querySelector("input[name='billItemTypeWithSettings']:checked");
 
-        }
+  var item = radioSmsCall.value;  
 
-            if (billItemChecked === "call") {
-                callTotal += callCost;
-            }
-            else if (billItemChecked === "sms") {
-                smsTotal += smsCost;
-            }
-
-        }
-
+  tCostOfBill(item);    
+callCostElem.innerHTML =callCostTotal.toFixed(2);
+    smsCostElem.innerHTML = smsCostTotal.toFixed(2)
+    totalCostElem.innerHTML = allCostTotal.toFixed(2);
+styleTotal(allCostTotal);
+  
+}
+function update(){
+  
+ callCostVal=Number(callCost.value);
+  smsCostVal=Number(smsCost.value);
+   warnLevel=Number(warningLevel.value);
+ critLevel=Number(criticalLevel.value);
+    styleTotal(allCostTotal); 
+alert("bread")
+    }
+btnAdd.addEventListener("click",clicked);
+btnUpd.addEventListener("click",update)
         
-        callTotalRadio.innerHTML = callTotal.toFixed(2);
-        smsTotalRadio.innerHTML = smsTotal.toFixed(2);
-        totalCost = callTotal + smsTotal;
-
-        totalSettings.innerHTML = totalCost.toFixed(2);
-        colorCode()
-    
-
-
-function updateSettingsClicked() {
-    callCost = Number(callCostSetting.value);
-    smsCost = Number(smsCostSetting.value);
-    criticalLevel = Number(criticalLevelText.value);
-    warningLevel = Number(warningLevelText.value);
-    colorCode()
-}
-
-function colorCode() {
-    totalSettingsSpan.classList.remove("danger");
-    totalSettingsSpan.classList.remove("warning");
-
-    if (totalCost >= criticalLevel) {
-        totalSettingsSpan.classList.remove("warning");
-        totalSettingsSpan.classList.add("danger");
-
-    }
-    else if (totalCost >= warningLevel && totalCost < criticalLevel) {
-        totalSettingsSpan.classList.remove("danger");
-        totalSettingsSpan.classList.add("warning");
-    }
-
-}
-
-
-addButton.addEventListener("click", addButtonClicked);
-
-
-updateSettings.addEventListener("click", updateSettingsClicked);
-© 2020 GitHub, Inc.

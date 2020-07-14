@@ -1,74 +1,49 @@
-const addButton = document.querySelector(".add");
-const updateButton = document.querySelector(".updateSettings");
+const billItemTypeRadio = document.querySelector(".billItemTypeRaidio");
 
-const billItem = document.querySelector(".billItemTypeWithSettings");
-const smsCost = document.querySelector(".smsCostSetting");
-const callCost = document.querySelector(".callCostSetting");
-const criticalLevel = document.querySelector(".criticalLevelSetting");
-const warningLevel = document.querySelector(".warningLevelSetting");
+const billRadioBtn = document.querySelector(".radioBillAddBtn");
 
-const callCostElem = document.querySelector(".callTotalSettings");
-const smsCostSetting = document.querySelector(".smsTotalSettings");
+const callTotalT = document.querySelector(".callTotalTwo");
 
-const totalCostElemThree = document.querySelector(".totalSettings");
+const smsTotalT = document.querySelector(".smsTotalTwo");
 
-var smsCostVal = 0;
-var callCostVal = 0;
-var warnLevel = 0;
-var critLevel = 0;
+const totalT = document.querySelector(".totalTwo");
 
-var smsCostTotal = 0;
-var callCostTotal = 0;
-var allCostTotal = 0;
+var totalCalls = 0;
+var totalSms = 0;
+var Total = 0;
 
-  function ButtonClicked(){
-  var checkedRadioBtn = document.querySelector("input[name='billItemTypeWithSettings']:checked");
-  if(allCostTotal < critLevel){
 
-    if (checkedRadioBtn){
-  var itemChecked = checkedRadioBtn.value;
+function radioBill() {
+    var checkedRadioBtn = document.querySelector(".billItemTypeRadio:checked");
 
-    if(itemChecked === "call"){
-      callCostTotal += callCostVal;
+    var billItemType = checkedRadioBtn.value
+    console.log(billItemType)
+    if (billItemType === 'call') {
+        totalCalls += 2.75;
+        Total += 2.75;
     }
-    else if (itemChecked === "sms"){
-      smsCostTotal += smsCostVal;
-
+     else if ( billItemType === 'sms'){
+         totalSms += 0.75;
+         Total += 0.75;
     }
-    }
-    callCostElem.innerHTML = callCostTotal.toFixed(2);
-  smsCostSetting.innerHTML = smsCostTotal.toFixed(2);
-      allCostTotal = callCostTotal + smsCostTotal
-  totalCostElemThree.innerHTML = allCostTotal.toFixed(2);
 
-      styleTotal()
-  }
+    callTotalT.innerHTML = totalCalls.toFixed(2);
+    smsTotalT.innerHTML = totalSms.toFixed(2);
+    totalT.innerHTML = Total.toFixed(2);
+    styleTotalColor();
 }
 
-function updated(){
-  callCostVal = Number(callCost.value);
-  smsCostVal = Number(smsCost.value);
-  warnLevel = Number(warningLevel.value);
-  critLevel = Number(criticalLevel.value);
+function styleTotalColor() {
 
-  styleTotal()
-} 
+    totalT.classList.remove("danger")
+    totalT.classList.remove("warning")
 
-function styleTotal(){
-
-  totalCostElemThree.classList.remove("danger");
-  totalCostElemThree.classList.remove("warning");
-
- if(allCostTotal >= warnLevel && allCostTotal <critLevel){
-   totalCostElemThree.classList.remove("danger");
-   totalCostElemThree.classList.add("warning");
- }
-  else if(allCostTotal >= critLevel){
-    totalCostElemThree.classList.remove("warning");
-    totalCostElemThree.classList.add("danger");   
-  }
+    if (Total >= 50) {
+        totalT.classList.add("danger")
+    } else if (Total >= 30 && Total <= 50) {
+        totalT.classList.add("warning")
+    }
 }
 
 
-addButton.addEventListener("click", ButtonClicked);
-updateButton.addEventListener("click", updated);
+billRadioBtn.addEventListener('click', radioBill);
