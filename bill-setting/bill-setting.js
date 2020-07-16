@@ -48,11 +48,11 @@ function clicked() {
 
 function styleTotalColor() {
 
-  totalSettings.classList.remove("danger");
+  totalSettings.classList.remove("critical");
   totalSettings.classList.remove("warning");
 
-  var currentStyle = settingsBillInstance.styleTotalColor();
-  totalSettings.classList.add(currentStyle);
+  var styleTotalColor = settingsBillInstance.styleTotalColor();
+  totalSettings.classList.add(styleTotalColor);
 
 
 }
@@ -64,7 +64,7 @@ function styleTotalColor() {
 
 // else if(currTotal>=critLevel){
 
-//     totalCostElem.classList.add("danger")
+//     totalCostElem.classList.add("critical")
 // } 
 
 

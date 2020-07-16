@@ -40,15 +40,37 @@ function BillWithSettings() {
 
         return totalCost;
     }
+function setWarningLevel(WarningLevel) {
 
+        theWarningLevel = WarningLevel;
+
+    }
+
+    function getWarningLevel() {
+
+        return theWarningLevel;
+
+    }
+
+    function setCriticalLevel(CriticalLevel) {
+
+        theCriticalLevel = CriticalLevel;
+
+    }
+
+    function getCriticalLevel() {
+
+        return theCriticalLevel;
+
+    }
     function styleTotalColor(){
 
         if(getTotalCost() >= theCriticalLevel){
-            return "danger"
+            return "critical"
         } else if(getTotalCost() >= theWarningLevel){
             return "warning"
         }
-        return "";
+       
     }
     
     
@@ -60,6 +82,10 @@ function BillWithSettings() {
         getSmsCost,
         getSmsCost,
         getTotalCost,
-        styleTotalColor
+        setWarningLevel,
+        getWarningLevel,
+        setCriticalLevel,
+        getCriticalLevel,
+        styleTotalColor,
     }
 }
