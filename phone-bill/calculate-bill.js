@@ -7,7 +7,7 @@ const billStringField = document.querySelector(".billString");
 const billTotalSpanElement = document.querySelector(".total");
 
 
-let calculateInstance = phoneBill();
+var calculateInstance = phoneBill();
 
  function totalPhoneBill() {
 
@@ -52,6 +52,10 @@ function calculateBtnClicked() {
 var billString = billStringField.value;
 
 const roundedBillTotal = totalPhoneBill(billString);
+
+var billStringEntered = type.value;
+
+textBillInstance.billTotal(billStringEntered);
 
 
 
