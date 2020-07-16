@@ -6,31 +6,28 @@ const billStringField = document.querySelector(".billString");
 
 const billTotalSpanElement = document.querySelector(".total");
 
+function totalPhoneBill(billString) {
 
-var calculateInstance = phoneBill();
+var billItems = billString.split(",");
 
- function totalPhoneBill() {
+var billTotal = 0;
 
+for (var i=0;i<billItems.length;i++){
+var billItem = billItems[i].trim();
 
+if (billItem === "call"){
+billTotal += 2.75;
+}
 
-// var billTotal = 0;
-
-// for (var i=0;i<billItems.length;i++){
-// var billItem = billItems[i].trim();
-
-// if (billItem === "call"){
-// billTotal += 2.75;
-// }
-
-// else if (billItem === "sms"){ 
-// billTotal += 0.75;
-// }
+else if (billItem === "sms"){ 
+billTotal += 0.75;
+}
 
 }
 
-var roundedBillTotal = calculateInstance.billTotal.toFixed(2);
-// return roundedBillTotal;
- 
+var roundedBillTotal = billTotal.toFixed(2);
+return roundedBillTotal;
+}
 
 function styleTotalColor(roundedBillTotal) {
 
@@ -52,10 +49,6 @@ function calculateBtnClicked() {
 var billString = billStringField.value;
 
 const roundedBillTotal = totalPhoneBill(billString);
-
-var billStringEntered = type.value;
-
-textBillInstance.billTotal(billStringEntered);
 
 
 

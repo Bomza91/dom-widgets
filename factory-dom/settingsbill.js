@@ -34,6 +34,16 @@ function BillWithSettings() {
         return theSmsCost;
     }
 
+    function makeCall() {
+        callCostTotal += theCallCost;
+     }
+
+     function sendSms() {
+        smsCostTotal += theSmsCost
+     }
+ 
+ 
+
     function getTotalCost() {
 
         totalCost = theCallCost + theSmsCost;
@@ -63,6 +73,8 @@ function setWarningLevel(WarningLevel) {
         return theCriticalLevel;
 
     }
+
+
     function styleTotalColor(){
 
         if(getTotalCost() >= theCriticalLevel){
@@ -81,6 +93,8 @@ function setWarningLevel(WarningLevel) {
         setSmsCost,
         getSmsCost,
         getSmsCost,
+        makeCall,
+        sendSms,
         getTotalCost,
         setWarningLevel,
         getWarningLevel,
